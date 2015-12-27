@@ -16,8 +16,9 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\..\Starling-Extension-Graphics\extension\src" />
     <class path="..\..\Starling-Framework\starling\src" />
+    <class path="..\..\feathers\source" />
+    <class path="..\..\feathers\themes\MetalWorksDesktopTheme\source" />
   </classpaths>
   <!-- Build options -->
   <build>

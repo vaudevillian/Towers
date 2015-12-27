@@ -22,6 +22,7 @@ package engine.classes
 			if ( activate )
 			{
 				parent.addChild( this );
+				mount();
 				this.addEventListener(EnterFrameEvent.ENTER_FRAME, update);				
 			}
 			else
@@ -32,6 +33,26 @@ package engine.classes
 		}		
 		
 		protected function update(event:EnterFrameEvent):void
+		{
+			
+		}
+		
+		protected function mount() : void
+		{
+			this.visible = false;
+		}
+		
+		protected function onMountSuccess() : void
+		{
+			this.visible = true;
+		}
+		
+		protected function dismount() : void
+		{
+			
+		}
+		
+		protected function onDismountSuccess() : void
 		{
 			
 		}

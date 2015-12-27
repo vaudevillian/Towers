@@ -31,8 +31,9 @@
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
       <path-element>C:\Coding\Git\BrowserTests\Towers\src</path-element>
-      <path-element>C:\Coding\Git\Starling-Extension-Graphics\extension\src</path-element>
       <path-element>C:\Coding\Git\Starling-Framework\starling\src</path-element>
+      <path-element>C:\Coding\Git\feathers\source</path-element>
+      <path-element>C:\Coding\Git\feathers\themes\MetalWorksDesktopTheme\source</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
   </compiler>
