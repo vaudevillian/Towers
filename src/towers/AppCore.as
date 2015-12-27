@@ -4,7 +4,7 @@ package towers
 	import starling.display.DisplayObjectContainer;
 	import starling.events.EnterFrameEvent;
 	import towers.enums.AppStates;
-	import towers.states.StateLobby;
+	import towers.states.lobby.StateLobby;
 	
 	/**
 	 * ...

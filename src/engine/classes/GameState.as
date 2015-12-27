@@ -1,14 +1,16 @@
 package engine.classes 
 {
+	import engine.IGameEventsHandler;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Sprite;
 	import starling.events.EnterFrameEvent;
+	import starling.events.Event;
 	
 	/**
 	 * ...
 	 * @author Dominik Forstmaier
 	 */
-	public class GameState extends Sprite 
+	public class GameState extends Sprite implements IGameEventsHandler
 	{
 		
 		public function GameState() 
@@ -31,6 +33,21 @@ package engine.classes
 				this.removeEventListener(EnterFrameEvent.ENTER_FRAME, update);		
 			}		
 		}		
+		
+		public function sendGameEvent(eventName:String):void 
+		{
+			dispatchEventWith( eventName, true );			
+		}
+		
+		public function registerGameEvent(eventName:String):void 
+		{
+			this.addEventListener( eventName, onGameEvent );			
+		}
+		
+		public function onGameEvent(e:Event):void 
+		{
+			
+		}
 		
 		protected function update(event:EnterFrameEvent):void
 		{

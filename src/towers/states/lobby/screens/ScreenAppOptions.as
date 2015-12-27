@@ -1,32 +1,25 @@
-package towers.states
+package towers.states.lobby.screens 
 {
-	import engine.classes.GameState;
+	import engine.mods.feathers.controls.VDButtonGroup;
 	import feathers.controls.Button;
-	import feathers.controls.ButtonGroup;
 	import feathers.data.ListCollection;
 	import feathers.themes.MetalWorksDesktopTheme;
-	import starling.display.DisplayObjectContainer;
-	import starling.display.Sprite;
-	import starling.events.EnterFrameEvent;
 	import starling.events.Event;
+	import towers.enums.GameEvents;
+	import towers.mods.TWScreen;
 	
 	/**
 	 * ...
 	 * @author Dominik Forstmaier
 	 */
-	public class StateLobby extends GameState
+	public class ScreenAppOptions extends TWScreen 
 	{
+		private var mButtonGroup:VDButtonGroup;
 		
-		private var mButtonGroup:ButtonGroup;
-		
-		public function StateLobby()
+		public function ScreenAppOptions() 
 		{
-			super();		
-		}
-		
-		override protected function update(event:EnterFrameEvent):void 
-		{
-			super.update(event);
+			super();
+			
 		}
 		
 		override protected function mount():void 
@@ -35,15 +28,14 @@ package towers.states
 			
 			new MetalWorksDesktopTheme();
 			
-			mButtonGroup = new ButtonGroup();
+			mButtonGroup = new VDButtonGroup();
 			this.addChild( mButtonGroup );
 			
 			mButtonGroup.dataProvider = new ListCollection(
 			[
-				{ label: "Start Game", triggered: buttonHandler },
-				{ label: "Options", triggered: buttonHandler }
+				{ name: "mBtnOption1", label: "Option #1", triggered: buttonHandler },
+				{ name: "mBtnBack",	   label: "Zurück", triggered: buttonHandler }
 			] );
-			
 			
 			//the button won't have a width and height until it "validates". it
 			//will validate on its own before the next frame is rendered by
@@ -53,25 +45,27 @@ package towers.states
 
 			//center the button
 			mButtonGroup.x = Math.round((this.stage.stageWidth - mButtonGroup.width) / 2);
-			mButtonGroup.y = Math.round((this.stage.stageHeight - mButtonGroup.height) / 2);
+			mButtonGroup.y = Math.round((this.stage.stageHeight - mButtonGroup.height) / 2) + 50;
 			
 			onMountSuccess();
-		}
+		}		
+		
 		
 		private function buttonHandler( event:Event ):void
 		{
-			//Event.TRIGGERED
 			var button:Button = Button( event.currentTarget );
-			trace( "button triggered:", button.label );
+			
+			switch( button.name )
+			{
+				case "mBtnOption1":
+					break;
+				case "mBtnBack":
+					sendGameEvent( GameEvents.SHOW_START );
+					dismount();
+					break;
+			}
 		}
 		
-		override protected function dismount():void 
-		{
-			super.dismount();
-			
-			
-		}
-	
 	}
 
 }
