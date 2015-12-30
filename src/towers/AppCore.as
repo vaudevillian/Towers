@@ -1,10 +1,17 @@
 package towers 
 {
 	import engine.classes.LeafInit;
+	import engine.mods.starlingbuilder.AssetMediator;
+	import engine.Utils;
+	import feathers.themes.MetalWorksDesktopTheme;
+	import feathers.themes.MetalWorksDesktopThemeWithAssetManager;
 	import starling.display.DisplayObjectContainer;
 	import starling.events.EnterFrameEvent;
 	import towers.enums.AppStates;
+	import towers.mods.TWAssetManager;
+	import towers.mods.TWUIBuilder;
 	import towers.states.lobby.StateLobby;
+	import towers.themes.towersStandard.TowersTheme;
 	
 	/**
 	 * ...
@@ -17,6 +24,8 @@ package towers
 		private var mRootContainer:DisplayObjectContainer;
 		private var mAppState:String = AppStates.NONE;
 		private var mStateLobby:StateLobby;
+		private var mAssetManager:TWAssetManager;
+		private var mUIBuilder:TWUIBuilder;
 
 		public static function getInstance():AppCore 
 		{
@@ -47,7 +56,40 @@ package towers
 				return;
 			}			
 			
+			Utils.stage = mRootContainer.stage;
+			
+			
+			mAssetManager = new TWAssetManager();
+			//new MetalWorksDesktopThemeWithAssetManager( "assets/", mAssetManager );
+			new TowersTheme();
+			mUIBuilder = new TWUIBuilder( new AssetMediator( mAssetManager ) );
+			
+			mAssetManager.enqueueBackground( "wizard_tower_art_1.jpg" );
+			mAssetManager.enqueueTexture( "ui.png", true );
+			mAssetManager.enqueueFont( "GrilledCheeseBTN_Size18_ColorFFFFFF_StrokeA8364B.fnt" );
+			mAssetManager.enqueueFont( "GrilledCheeseBTN_Size18_ColorFFFFFF_StrokeA8364B.png" );
+			mAssetManager.enqueueFont( "GrilledCheeseBTN_Size36_ColorFFFFFF.fnt" );
+			mAssetManager.enqueueFont( "GrilledCheeseBTN_Size36_ColorFFFFFF.png" );
+			mAssetManager.enqueueFont( "GrilledCheeseBTN_Size36_ColorFFFFFF_StrokeA8364B.fnt" );
+			mAssetManager.enqueueFont( "GrilledCheeseBTN_Size36_ColorFFFFFF_StrokeA8364B.png" );
+			mAssetManager.enqueueFont( "LobsterTwoRegular_Size54_ColorFFFFFF_StrokeAF384E_DropShadow560D1B.fnt" );
+			mAssetManager.enqueueFont( "LobsterTwoRegular_Size54_ColorFFFFFF_StrokeAF384E_DropShadow560D1B.png" );			
+			
+			
+			function onProgress( progress:Number ) : void
+			{
+				if ( progress == 1.00 )
+				{
+					finishInit();
+				}
+			}
+			mAssetManager.loadQueue( onProgress );			
+		}
+		
+		override protected function finishInit():void 
+		{
 			mRootContainer.addEventListener(EnterFrameEvent.ENTER_FRAME, update);
+			super.finishInit();
 		}
 		
 		private function update(e:EnterFrameEvent):void 
@@ -82,6 +124,16 @@ package towers
 			}
 			
 			mAppState = state;			
+		}
+		
+		public function getAssetMngr() : TWAssetManager
+		{
+			return mAssetManager;		
+		}
+		
+		public function getUIBuilder() : TWUIBuilder
+		{
+			return mUIBuilder;
 		}
 		
 

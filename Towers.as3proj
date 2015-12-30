@@ -6,8 +6,8 @@
     <movie input="" />
     <movie path="bin\Towers.swf" />
     <movie fps="30" />
-    <movie width="800" />
-    <movie height="600" />
+    <movie width="1000" />
+    <movie height="800" />
     <movie version="18" />
     <movie minorVersion="0" />
     <movie platform="Flash Player" />
@@ -19,6 +19,7 @@
     <class path="..\..\Starling-Framework\starling\src" />
     <class path="..\..\feathers\source" />
     <class path="..\..\feathers\themes\MetalWorksDesktopTheme\source" />
+    <class path="..\..\starling-builder-engine\src" />
   </classpaths>
   <!-- Build options -->
   <build>
